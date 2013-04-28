@@ -41,6 +41,7 @@ namespace LD26_minimalism
         ItemHandler items;
         EnemyHandler enemies;
         CollisionHandler collisions;
+        SoundHandler sounds;
 
         KeyboardState currentKeyboardState;
         KeyboardState oldKeyboardState;
@@ -50,7 +51,6 @@ namespace LD26_minimalism
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
-            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
         }
 
@@ -64,6 +64,7 @@ namespace LD26_minimalism
             items = new ItemHandler(this.Content);
             enemies = new EnemyHandler(this.Content);
             collisions = new CollisionHandler();
+            sounds = new SoundHandler();
 
             base.Initialize();
         }
@@ -74,12 +75,13 @@ namespace LD26_minimalism
             font = Content.Load<SpriteFont>("font");
             startScreen = Content.Load<Texture2D>("images/startScreen");
             overScreen = Content.Load<Texture2D>("images/gameOverScreen");
-            player.LoadContent(this.Content); 
+            player.LoadContent(this.Content);
+            sounds.LoadContent(this.Content);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            currentKeyboardState = Keyboard.GetState();
+            currentKeyboardState = Keyboard.GetState(); 
 
             if (currentState == State.Over)
             {
@@ -98,8 +100,8 @@ namespace LD26_minimalism
                 enemies.Update(gameTime, player);
                 items.Update();
 
-                collisions.HandleItemCollision(player, items);
-                collisions.HandleBulletCollisions(player, enemies);
+                collisions.HandleItemCollision(player, items, sounds);
+                collisions.HandleBulletCollisions(player, enemies, sounds);
 
                 if (levelChanged)
                 {
@@ -107,6 +109,9 @@ namespace LD26_minimalism
                         player.Hitpoints = 100;
                     items.Create = 3 * currentLevel;
                     enemies.Create = currentLevel;
+                    sounds.PlayLevelUp();
+                    if (player.Score > 0)
+                        player.Score += 15 * currentLevel;
                     levelChanged = false;
                 }
 

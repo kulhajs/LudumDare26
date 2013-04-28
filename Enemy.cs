@@ -66,7 +66,7 @@ namespace LD26_minimalism
             else
                 this.radius = 250;
 
-            reloadTime = initReloadTime;
+            reloadTime = 0.0f;
         }
 
         public void Update(GameTime theGameTime, Player player)

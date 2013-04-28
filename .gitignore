@@ -10,3 +10,13 @@ obj/x86/Debug/Microsoft.Xna.Framework.RuntimeProfile.txt
 obj/x86/Debug/cachefile-{C8C7CC4A-7F72-4768-AB1E-548ED738AB84}-targetpath.txt
 Game.ico
 GameThumbnail.png
+*.png
+*.wav
+*.spritefont
+bin/x86/Release/readme.txt
+bin/x86/Release/xnafx40_redist.msi
+icon.ico
+obj/x86/Release/ContentPipeline-{C8C7CC4A-7F72-4768-AB1E-548ED738AB84}.xml
+obj/x86/Release/LD26_minimalism.csproj.FileListAbsolute.txt
+obj/x86/Release/Microsoft.Xna.Framework.RuntimeProfile.txt
+obj/x86/Release/cachefile-{C8C7CC4A-7F72-4768-AB1E-548ED738AB84}-targetpath.txt
